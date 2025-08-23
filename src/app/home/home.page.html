@@ -1,0 +1,55 @@
+<ion-content fullscreen class="ion-padding">
+  <h2 class="ion-text-center">TOP CATEGORIES</h2>
+
+  <ion-grid class="ion-text-center">
+    <ion-row>
+      <ion-col
+        size="6"
+        size-md="4"
+        size-lg="3"
+        *ngFor="let subject of subjects"
+      >
+        <ion-card class="subject-card" (click)="openUploadPage(subject.name)">
+          <ion-card-content>
+            <img
+              [src]="subject.icon"
+              alt="{{ subject.name }} Icon"
+              class="subject-icon"
+            />
+            <p class="subject-name">{{ subject.name }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- Footer Tabs -->
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="test">
+      <ion-icon name="list"></ion-icon>
+      <ion-label>Test</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="progress">
+      <ion-icon name="bar-chart"></ion-icon>
+      <ion-label>Progress</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      <ion-label>Search</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="settings">
+      <ion-icon name="settings"></ion-icon>
+      <ion-label>Settings</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>

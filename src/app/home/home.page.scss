@@ -1,0 +1,132 @@
+
+.progress-icon,
+.home-icon,
+.test-icon,
+.search-icon,
+.settings-icon {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.progress-icon {
+  background-image: url('/assets/icon/progress.png');
+}
+.home-icon {
+  background-image: url('/assets/icon/home.png');
+}
+.test-icon {
+  background-image: url('/assets/icon/test.png');
+}
+.search-icon {
+  background-image: url('/assets/icon/search.png');
+}
+.settings-icon {
+  background-image: url('/assets/icon/settings.png');
+}
+
+
+.category-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+ion-card {
+  z-index: 1;
+  pointer-events: auto;
+}
+:host {
+  display: block;
+  height: 100%;
+  background-color: #e6f2ff;
+  --ion-background-color: #e6f2ff;
+}
+
+ion-content {
+  --background: #e6f2ff;
+  background-color: #e6f2ff;
+}
+
+/* ---------- Subject Card Styling ---------- */
+.subject-card {
+  background: white;
+  padding: 16px;
+  margin: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.subject-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Icon inside card */
+.subject-icon {
+  width: 60px;
+  height: 60px;
+  margin: 10px auto;
+  display: block;
+}
+
+.subject-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 8px;
+}
+
+/* ---------- Responsive Media Queries ---------- */
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .subject-card {
+    padding: 12px;
+    margin: 8px;
+    border-radius: 8px;
+  }
+  .subject-icon {
+    width: 50px;
+    height: 50px;
+  }
+  .subject-name {
+    font-size: 12px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .subject-card {
+    padding: 14px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  .subject-icon {
+    width: 70px;
+    height: 70px;
+  }
+  .subject-name {
+    font-size: 14px;
+  }
+}
+
+/* Large Screens / Desktops */
+@media (min-width: 769px) {
+  .subject-card {
+    padding: 18px;
+    margin: 12px;
+    border-radius: 14px;
+  }
+  .subject-icon {
+    width: 80px;
+    height: 80px;
+  }
+  .subject-name {
+  white-space: nowrap;
+  font-size: clamp(10px, 2vw, 14px); /* font auto-scales */
+}
+
+}
+

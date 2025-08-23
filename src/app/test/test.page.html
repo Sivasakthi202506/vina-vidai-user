@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Timer -->
+  <div class="timer" *ngIf="!showResult">⏳ {{ formatTime(timer) }}</div>
+
+  <!-- Progress -->
+  <div class="progress-text" *ngIf="!showResult">Question {{ progress }}</div>
+
+  <!-- Quiz Section -->
+  <div class="question-container" *ngIf="questions.length > 0 && !showResult">
+    <h2>{{ questions[currentQuestionIndex]?.question }}</h2>
+
+    <ion-item
+      button
+      *ngFor="let option of questions[currentQuestionIndex]?.options"
+      (click)="selectOption(option)"
+      [color]="
+        answered && option === questions[currentQuestionIndex]?.answer
+          ? 'success'
+          : answered && option === selectedOption &&
+            option !== questions[currentQuestionIndex]?.answer
+          ? 'danger'
+          : ''
+      "
+    >
+      {{ option }}
+    </ion-item>
+  </div>
+
+  <!-- Buttons Row -->
+  <div class="button-row" *ngIf="questions.length > 0 && !showResult">
+  <ion-button
+    class="prev-btn styled-btn"
+    (click)="prevQuestion()"
+    [disabled]="currentQuestionIndex === 0"
+  >
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    Previous
+  </ion-button>
+
+  <ion-button
+    *ngIf="currentQuestionIndex < questions.length - 1"
+    class="next-btn styled-btn"
+    (click)="nextQuestion()"
+    [disabled]="!answered"
+  >
+    Next
+    <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+  </ion-button>
+
+  <ion-button
+    *ngIf="currentQuestionIndex === questions.length - 1"
+    class="submit-btn styled-btn"
+    (click)="submitQuiz()"
+    [disabled]="!answered"
+  >
+    Submit
+  </ion-button>
+</div>
+
+
+  <!-- Result Card -->
+  <!-- Result Popup -->
+<!-- Result Popup -->
+<div *ngIf="showResult" class="result-popup">
+  <div class="popup-card">
+    <div class="icon">{{ resultEmoji }}</div>
+    <!-- ❌ Removed ERROR!/SUCCESS/RESULT text -->
+    <p class="message">
+      You got {{ correctCount }} / {{ questions.length }} correct.<br />
+      {{ resultMessage }}
+    </p>
+    <ion-button expand="block" [color]="resultColor" (click)="goHome()">
+      {{ resultColor === 'success' ? 'Continue' : 'Try Again' }}
+    </ion-button>
+  </div>
+</div>
+
+
+
+
+  <!-- Stars Animation -->
+  <div *ngIf="showStars" class="stars-confetti">
+    <div class="star" *ngFor="let i of [1,2,3,4,5,6,7,8]">⭐</div>
+  </div>
+
+  <!-- Sad Emoji Animation -->
+  <div *ngIf="showSad" class="sad-confetti">
+    <div class="sad" *ngFor="let i of [1,2,3,4,5,6,7,8]">😢</div>
+  </div>
+</ion-content>

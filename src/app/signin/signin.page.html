@@ -1,0 +1,33 @@
+<ion-content class="ion-padding">
+  <div class="signin-container">
+    <div class="signin-card">
+      <h2 class="title">Sign In</h2>
+
+      <form (ngSubmit)="onSignIn()">
+        <ion-item>
+          <ion-label position="floating">Email or Username</ion-label>
+          <ion-input type="text" [(ngModel)]="emailOrUsername" name="emailOrUsername" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" class="signin-button">
+          Sign In
+        </ion-button>
+      </form>
+
+      <div class="signup-link">
+        <ion-text>
+          Don’t have an account?
+        </ion-text>
+        <br />
+        <ion-button fill="clear" color="primary" (click)="goToSignup()">
+          Create an account
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

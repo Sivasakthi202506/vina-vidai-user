@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  height: 100%;
+  background-color: #e6f2ff;
+  --ion-background-color: #e6f2ff;
+}
+
+ion-content {
+  --background: #e6f2ff;
+  background-color: #e6f2ff;
+}
+
+/* Common style for all icons */
+.progress-icon, .progress-icon-click,
+.home-icon, .home-icon-click,
+.test-icon, .test-icon-click,
+.search-icon, .search-icon-click,
+.settings-icon, .settings-icon-click {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Default icons */
+.progress-icon { background-image: url('/assets/icon/progress.png'); }
+.home-icon { background-image: url('/assets/icon/home.png'); }
+.test-icon { background-image: url('/assets/icon/test.png'); }
+.search-icon { background-image: url('/assets/icon/search.png'); }
+.settings-icon { background-image: url('/assets/icon/settings.png'); }
+
+/* Clicked icons */
+.progress-icon-click { background-image: url('/assets/icon/progress_click.png'); }
+.home-icon-click { background-image: url('/assets/icon/home_click.png'); }
+.test-icon-click { background-image: url('/assets/icon/test_click.png'); }
+.search-icon-click { background-image: url('/assets/icon/search_click.png'); }
+.settings-icon-click { background-image: url('/assets/icon/settings_click.png'); }
+
+.subject-card {
+  background: white;
+  padding: 16px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
