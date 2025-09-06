@@ -12,24 +12,24 @@ export class FirebaseService {
     private firestore: Firestore
   ) {}
 
-  // 🔹 Sign up new user
-  async signUp(email: string, password: string, username: string): Promise<UserCredential> {
-    const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+ async signUp(email: string, password: string, username: string): Promise<UserCredential> {
+  const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
 
-    // Save additional user data to Firestore
-    const uid = userCredential.user.uid;
-    await setDoc(doc(this.firestore, 'users', uid), {
-      username,
-      email
-    });
+  // Save additional user data to Firestore
+  const uid = userCredential.user.uid;
+  await setDoc(doc(this.firestore, 'users', uid), {
+    username,
+    email
+  });
 
-    return userCredential;
-  }
+  return userCredential;
+}
+
 
   // 🔹 Sign in with email
-  async signInWithEmail(email: string, password: string): Promise<UserCredential> {
-    return await signInWithEmailAndPassword(this.auth, email, password);
-  }
+ async signInWithEmail(email: string, password: string): Promise<UserCredential> {
+  return await signInWithEmailAndPassword(this.auth, email, password);
+}
 
   // 🔹 Sign in with username (resolve to email first)
   async signInWithUsername(username: string, password: string): Promise<UserCredential> {

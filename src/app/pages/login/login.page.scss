@@ -1,70 +1,130 @@
 ion-content {
-  --background: none;
-  background: url('/assets/example.jpg') no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
+  --background: linear-gradient(180deg, #0f766e, #023030);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.logo {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #00c9a7;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .signup-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
+  width: 100%;
 }
 
 .signup-card {
-  width: 100%;
-  max-width: 400px;
-  background: rgba(255, 255, 255, 0.85); // translucent white box
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #000; // black text
+  background: #fff;
+  padding: 28px 20px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+  text-align: center;
 }
 
 .title {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
+  margin-bottom: 5px;
   color: #000;
 }
 
-ion-item {
-  --background: transparent;
-  --border-color: rgba(0, 0, 0, 0.3);
-  --highlight-color-focused: #000;
-  color: #000;
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Input */
+.input-item {
+  --background: #f9f9f9;
+  --border-radius: 12px;
+  margin-bottom: 14px;
+  padding: 0 8px;
+  border: 1px solid #ddd;
 }
 
 ion-label {
-  color: #000;
+  font-size: 14px;
 }
 
 ion-input {
+  font-size: 15px;
   color: #000;
+}
+
+ion-icon {
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+/* Error messages */
+.error-msg {
+  color: red;
+  font-size: 12px;
+  margin: -8px 0 10px 4px;
+}
+
+
+
+
+.signup-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
 }
 
 .signup-button {
-  margin-top: 20px;
+  --background: #00c9a7;
+  --background-hover: #00b092;
+  --color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 10px;
+  width: 20%;
+  border-radius: 12px;
+  box-shadow: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* ✅ Create the notch/tab effect */
+.signup-button::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 24px;
+  background: #00c9a7;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  z-index: -1;
 }
 
 .signin-link {
+  margin-top: 16px;
+  font-size: 14px;
   text-align: center;
-  margin-top: 10px;
 }
 
-ion-button {
-  --border-radius: 8px;
-}
-
-ion-text {
-  color: #000;
+.signin-text {
+  color: #00c9a7;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
 }

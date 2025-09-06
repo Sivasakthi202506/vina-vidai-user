@@ -16,21 +16,17 @@ export class TestPage implements OnInit, OnDestroy {
   currentQuestionIndex = 0;
   timer: number = 0;
   timerInterval: any;
+  duration: number = 0;
 
   answered = false;
   selectedOption: string | null = null;
 
-  showStars = false;
-  showSad = false;
-
-  private duration: number = 0; // store total duration (seconds)
-
-  // ✅ New state
+  // ✅ State
   correctCount: number = 0;
   showResult: boolean = false;
-  resultMessage: string = '';
+  reviewMode: boolean = false;
   resultColor: string = '';
-  resultEmoji: string = '';
+  userAnswers: any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +40,7 @@ export class TestPage implements OnInit, OnDestroy {
     this.duration =
       Number(this.route.snapshot.queryParamMap.get('duration')) || 10;
 
-    this.timer = this.duration * 60; // convert to seconds
+    this.timer = this.duration * 60;
     await this.loadQuestions(numQuestions);
   }
 
@@ -81,17 +77,7 @@ export class TestPage implements OnInit, OnDestroy {
   formatTime(seconds: number): string {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
-
-    let minText = m > 0 ? `${m} minute${m > 1 ? 's' : ''}` : '';
-    let secText = s > 0 ? `${s} second${s > 1 ? 's' : ''}` : '';
-
-    if (minText && secText) {
-      return `${minText} ${secText}`;
-    } else if (minText) {
-      return minText;
-    } else {
-      return secText;
-    }
+    return `${m}:${s < 10 ? '0' + s : s}`;
   }
 
   async loadQuestions(numQuestions: number) {
@@ -108,54 +94,52 @@ export class TestPage implements OnInit, OnDestroy {
   }
 
   selectOption(option: string) {
-    if (this.answered) return;
-
     this.answered = true;
     this.selectedOption = option;
-    const correctAnswer = this.questions[this.currentQuestionIndex]?.answer;
 
-    if (option === correctAnswer) {
-      this.correctCount++; // ✅ Count correct answers
-      this.showStars = true;
-      setTimeout(() => (this.showStars = false), 2000);
-    } else {
-      this.showSad = true;
-      setTimeout(() => (this.showSad = false), 2000);
-    }
+    // ✅ Save answer
+    this.userAnswers[this.questions[this.currentQuestionIndex].id] = option;
   }
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
-      this.answered = false;
-      this.selectedOption = null;
+      this.loadStoredAnswer();
     }
   }
 
   prevQuestion() {
     if (this.currentQuestionIndex > 0) {
       this.currentQuestionIndex--;
-      this.answered = false;
+      this.loadStoredAnswer();
+    }
+  }
+
+  private loadStoredAnswer() {
+    const qId = this.questions[this.currentQuestionIndex].id;
+    if (this.userAnswers[qId]) {
+      this.selectedOption = this.userAnswers[qId];
+      this.answered = true;
+    } else {
       this.selectedOption = null;
+      this.answered = false;
     }
   }
 
   submitQuiz() {
-    const total = this.questions.length;
-    const percentage = Math.round((this.correctCount / total) * 100);
+    this.correctCount = 0;
+    this.questions.forEach((q) => {
+      if (this.userAnswers[q.id] === q.answer) {
+        this.correctCount++;
+      }
+    });
 
-    if (percentage <= 40) {
-      this.resultColor = 'danger';
-      this.resultMessage = 'Better luck next time!';
-      this.resultEmoji = '😢';
-    } else if (percentage < 80) {
-      this.resultColor = 'warning';
-      this.resultMessage = 'Good effort!';
-      this.resultEmoji = '🙂';
-    } else {
+    if (this.correctCount >= 4) {
       this.resultColor = 'success';
-      this.resultMessage = 'Excellent!';
-      this.resultEmoji = '😃';
+    } else if (this.correctCount === 3) {
+      this.resultColor = 'warning';
+    } else {
+      this.resultColor = 'danger';
     }
 
     this.showResult = true;
@@ -165,8 +149,9 @@ export class TestPage implements OnInit, OnDestroy {
   get progress() {
     return `${this.currentQuestionIndex + 1}/${this.questions.length}`;
   }
-  goHome() {
-    this.router.navigate(['/home']);
-  }
 
+  goToReview() {
+    this.showResult = false;
+    this.reviewMode = true;
+  }
 }

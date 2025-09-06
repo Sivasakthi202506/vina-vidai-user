@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'signin',
+    redirectTo: 'welcome',
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'question',
     loadComponent: () => import('./question/question.page').then(m => m.QuestionPage)
+  },
+   {
+    path: 'welcome',
+    loadComponent: () => import('./welcome/welcome.page').then( m => m.WelcomePage)
   },
   
  
@@ -45,7 +49,8 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
-  },
+  }
+
   
 
 
