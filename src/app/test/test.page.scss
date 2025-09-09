@@ -3,214 +3,64 @@
   font-size: 1.2rem;
   margin: 10px 0;
 }
-
-.question-container {
-  padding: 16px;
-}
-.result-card {
+ion-title {
   text-align: center;
-  margin: 10px auto;   /* smaller margin and centered */
-  padding: 12px 16px;  /* less padding */
-  border-radius: 10px;
-  max-width: 280px;    /* fixed smaller width */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
-/* Style for disabled buttons */
-
-
-.result-card h2 {
-  font-size: 1.4rem;   /* reduced heading size */
-  margin-bottom: 8px;
+.question-container { padding: 16px; }
+ .question-container h2 { text-align: center;
+  justify-content: center;
+  margin-bottom: 20px; width: 100%; }
+ion-item {
+  justify-content: center;
+  text-align: center;
 }
-
-.result-card p {
-  font-size: 0.9rem;   /* smaller text */
-  margin: 4px 0;
+ion-item.selected {
+  --background: #3b82f6;
+  --color: #fff;
 }
-
-.result-card .emoji {
-  font-size: 1.5rem;   /* smaller emoji */
-  display: block;
-  margin-top: 6px;
-}
-
-
 .button-row {
   display: flex;
   justify-content: center;
   margin: 20px 0;
   gap: 15px;
 }
-
-.styled-btn {
-  --border-radius: 25px;      /* rounded pill shape */
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --background: #3b82f6;      /* default blue */
-  --color: black;
-  font-weight: 500;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  min-width: 110px;
-  justify-content: center;
-}
-
-/* Previous button color */
-.prev-btn {
-  --background: #fff; 
-      /* dark like screenshot */
-}
-
-/* Next button color */
-.next-btn {
-  --background: #3b82f6;   /* blue like screenshot */
-}
-
-/* Submit button (red like last example) */
-.submit-btn {
-  --background: #ef4444;
-}
-
-
-/* Animation Containers */
-.stars-confetti,
-.sad-confetti {
+.next-btn { --background: #3b82f6; --color: #fff; }
+.prev-btn { --background: #fff; --color: #555; }
+.result-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.star,
-.sad {
-  position: absolute;
-  font-size: 2rem;
-  opacity: 0;
-  animation: fly 2s ease-out forwards;
-}
-
-/* Start positions */
-.star:nth-child(1),
-.sad:nth-child(1) {
-  top: 0;
-  left: 0;
-}
-.star:nth-child(2),
-.sad:nth-child(2) {
-  top: 0;
-  right: 0;
-}
-.star:nth-child(3),
-.sad:nth-child(3) {
-  bottom: 0;
-  left: 0;
-}
-.star:nth-child(4),
-.sad:nth-child(4) {
-  bottom: 0;
-  right: 0;
-}
-.star:nth-child(5),
-.sad:nth-child(5) {
-  top: 20%;
-  left: 10%;
-}
-.star:nth-child(6),
-.sad:nth-child(6) {
-  top: 80%;
-  right: 15%;
-}
-.star:nth-child(7),
-.sad:nth-child(7) {
-  bottom: 25%;
-  left: 30%;
-}
-.star:nth-child(8),
-.sad:nth-child(8) {
-  top: 40%;
-  right: 40%;
-}
-
-/* Keyframes */
-@keyframes fly {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) scale(0.5) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(calc(50vw - 50%), calc(50vh - 50%))
-      scale(1.5)
-      rotate(180deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(100vw - 50%), calc(100vh - 50%))
-      scale(0.3)
-      rotate(720deg);
-  }
-}
-.result-popup {
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  z-index: 999;
 }
-
-.result-popup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
 .popup-card {
   background: #fff;
   padding: 20px;
   border-radius: 12px;
   text-align: center;
-  max-width: 320px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
-
-  .icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
-  }
-
-  /* ❌ Removed .status-text (no ERROR!/SUCCESS heading anymore) */
-
-  .message {
-    font-size: 0.95rem;
-    color: #555;
-    margin-bottom: 15px;
-  }
-
-  ion-button {
-    border-radius: 8px;
-  }
-
-
-/* ❌ Removed colored top borders (.success, .danger, .warning) */
-
-
-
-
- 
- 
-
-  &.success {
-  border-top: 4px solid #28a745;
+  width: 280px;
 }
-
-&.danger {
-  border-top: 4px solid #dc3545;
+.review-container {
+  padding: 16px;
 }
-
-&.warning {
-  border-top: 4px solid #ffc107;
+.review-question {
+  margin-bottom: 20px;
 }
+.option {
+  padding: 5px;
+  border-radius: 6px;
+  justify-content: center;
 }
-
-
+.option.correct {
+  background: #28a745;
+  color: #fff;
+}
+.option.wrong {
+  background: #dc3545;
+  color: #fff;
+}
