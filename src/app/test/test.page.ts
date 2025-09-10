@@ -35,14 +35,18 @@ export class TestPage implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    const numQuestions =
-      Number(this.route.snapshot.queryParamMap.get('numQuestions')) || 5;
-    this.duration =
-      Number(this.route.snapshot.queryParamMap.get('duration')) || 10;
+  // ✅ Read params exactly as sent
+  const numQuestions =
+    Number(this.route.snapshot.queryParamMap.get('questions')) || 5;
+  this.duration =
+    Number(this.route.snapshot.queryParamMap.get('time')) || 600; // seconds
 
-    this.timer = this.duration * 60;
-    await this.loadQuestions(numQuestions);
-  }
+  // ✅ Timer directly uses user-given seconds
+  this.timer = this.duration;
+
+  await this.loadQuestions(numQuestions);
+}
+
 
   ngOnDestroy() {
     this.stopTimer();

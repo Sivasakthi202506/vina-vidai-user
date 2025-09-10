@@ -1,34 +1,44 @@
-<ion-header>
+<ion-header class="quiz-header">
   <ion-toolbar>
-    <ion-title>Test</ion-title>
+    <ion-title>Science Test</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- Timer -->
-  <div class="timer" *ngIf="!showResult && !reviewMode">⏳ {{ formatTime(timer) }}</div>
-
-  <!-- Progress -->
-  <div class="progress-text" *ngIf="!showResult && !reviewMode">
-    Question {{ progress }}
+  <!-- Timer + Progress Bar -->
+  <div class="top-bar" *ngIf="!showResult && !reviewMode">
+    <div class="timer">⏳ {{ formatTime(timer) }}</div>
+    <ion-progress-bar
+      [value]="(currentQuestionIndex + 1) / questions.length"
+      color="primary"
+    ></ion-progress-bar>
+    <div class="progress-text">Question {{ progress }}</div>
   </div>
 
   <!-- Quiz Section -->
-  <div class="question-container" *ngIf="questions.length > 0 && !showResult && !reviewMode">
+  <div
+    class="question-container"
+    *ngIf="questions.length > 0 && !showResult && !reviewMode"
+  >
     <h2>{{ questions[currentQuestionIndex]?.question }}</h2>
 
-    <ion-item
-      button
-      *ngFor="let option of questions[currentQuestionIndex]?.options"
-      (click)="selectOption(option)"
-      [class.selected]="option === selectedOption"
-    >
-      {{ option }}
-    </ion-item>
+    <ion-list>
+      <ion-item
+        button
+        *ngFor="let option of questions[currentQuestionIndex]?.options"
+        (click)="selectOption(option)"
+        [class.selected]="option === selectedOption"
+      >
+        <ion-label>{{ option }}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 
   <!-- Buttons Row -->
-  <div class="button-row" *ngIf="questions.length > 0 && !showResult && !reviewMode">
+  <div
+    class="button-row"
+    *ngIf="questions.length > 0 && !showResult && !reviewMode"
+  >
     <ion-button
       class="prev-btn styled-btn"
       (click)="prevQuestion()"
@@ -63,7 +73,8 @@
     <div class="popup-card" [ngClass]="resultColor">
       <p class="message">
         You got {{ correctCount }} / {{ questions.length }} correct.<br />
-        Time taken: {{ formatTime(duration * 60 - timer) }}
+        Time taken: {{ formatTime(duration - timer) }}
+
       </p>
       <ion-button expand="block" [color]="resultColor" (click)="goToReview()">
         OK
