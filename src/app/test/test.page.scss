@@ -108,3 +108,16 @@ ion-item.selected {
   background: #dc3545;
   color: #fff;
 }
+ion-progress-bar {
+  height: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 6px 0;
+}
+ion-progress-bar::part(track) {
+  background: #f1f1f1; /* light background */
+}
+
+ion-progress-bar::part(progress) {
+  background: #00c9a7 /* red bar */
+}
