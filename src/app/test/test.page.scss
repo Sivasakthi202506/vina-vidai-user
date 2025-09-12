@@ -10,17 +10,18 @@
 
 /* ✅ Timer and Progress */
 .top-bar {
-  text-align: center;
-  margin: 10px 0;
+ text-align: center;
+  margin: 12px 0;
 }
 .timer {
   font-size: 1.2rem;
-  margin-bottom: 5px;
+  margin-bottom: 8px;  /* extra gap below timer */
+  
   color: #333;
 }
 .progress-text {
-  font-size: 0.9rem;
-  margin-top: 5px;
+ font-size: 0.9rem;
+  margin-top: 8px;  /* equal gap above question text */
   color: #555;
 }
 
@@ -50,6 +51,14 @@ ion-item.selected {
   border: none;
   
 }
+ion-progress-bar {
+  padding: 20px; 
+   height: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 8px 0;/* example */
+}
+
 
 /* ✅ Buttons */
 .button-row {
@@ -112,12 +121,7 @@ ion-item.selected {
   background: #dc3545;
   color: #fff;
 }
-ion-progress-bar {
-  height: 14px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 6px 0;
-}
+
 ion-progress-bar::part(track) {
   background: #f1f1f1; /* light background */
 }
