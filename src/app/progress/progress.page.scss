@@ -1,0 +1,21 @@
+.progress-container {
+  padding: 20px;
+  text-align: center;
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  ion-item {
+    margin-bottom: 10px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  strong {
+    color: #00c9a7;
+  }
+}

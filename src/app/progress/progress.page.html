@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>My Progress</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="progress-container">
+    <h2>Your Test Progress</h2>
+
+    <ion-list *ngIf="progressData.length > 0; else noData">
+      <ion-item *ngFor="let item of progressData">
+        <ion-label>
+          <h3>Test on {{ item.date | date: 'short' }}</h3>
+          <p>Quiz Points: {{ item.quizPoints }} pts</p>
+          <p>Time Bonus: {{ item.timeBonus }} pts</p>
+          <strong>Total: {{ item.totalPoints }} pts</strong>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ng-template #noData>
+      <p>No progress yet. Take your first quiz!</p>
+    </ng-template>
+  </div>
+</ion-content>
