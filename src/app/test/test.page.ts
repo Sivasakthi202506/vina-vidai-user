@@ -132,25 +132,7 @@ export class TestPage implements OnInit, OnDestroy {
     }
   }
 
-  submitQuiz() {
-    this.correctCount = 0;
-    this.questions.forEach((q) => {
-      if (this.userAnswers[q.id] === q.answer) {
-        this.correctCount++;
-      }
-    });
-
-    if (this.correctCount >= 4) {
-      this.resultColor = 'success';
-    } else if (this.correctCount === 3) {
-      this.resultColor = 'warning';
-    } else {
-      this.resultColor = 'danger';
-    }
-
-    this.showResult = true;
-    this.stopTimer();
-  }
+ 
 
   get progress() {
     return `${this.currentQuestionIndex + 1}/${this.questions.length}`;
@@ -160,5 +142,29 @@ export class TestPage implements OnInit, OnDestroy {
     this.showResult = false;
     this.reviewMode = true;
   }
-  
+  timeBonus: number = 0;
+totalPoints: number = 0;
+  submitQuiz() {
+  this.correctCount = 0;
+
+  // ✅ Count correct answers
+  this.questions.forEach((q) => {
+    if (this.userAnswers[q.id] === q.answer) {
+      this.correctCount++;
+    }
+  });
+
+  // ✅ Time bonus (1 point for every 30 seconds left, adjust as you like)
+  this.timeBonus = Math.floor(this.timer / 30);
+
+  // ✅ Total points
+  this.totalPoints = this.correctCount * 10 + this.timeBonus;
+
+  // ✅ Show result card
+  this.showResult = true;
+
+  // ✅ Stop timer
+  this.stopTimer();
+}
+
 }
