@@ -2,7 +2,12 @@
   "name": "vina-vidai",
   "version": "0.0.1",
   "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "homepage": "https://sivasakthi202506.github.io/vina-vidai-user",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +16,7 @@
     "test": "ng test",
     "lint": "ng lint"
   },
+  
   "private": true,
   "dependencies": {
     "@angular/animations": "^20.0.0",
@@ -49,6 +55,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",
     "eslint-plugin-prefer-arrow": "1.2.2",
+    "gh-pages": "^6.3.0",
     "jasmine-core": "~5.1.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.4.0",
