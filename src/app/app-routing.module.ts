@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'test',
     loadComponent: () => import('./test/test.page').then( m => m.TestPage)
   },
+     {
+    path: 'progress',
+    loadComponent: () => import('./progress/progress.page').then( m => m.ProgressPage)
+  },
   
      
       {

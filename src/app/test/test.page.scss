@@ -11,7 +11,9 @@
 /* ✅ Timer and Progress */
 .top-bar {
  text-align: center;
-  margin: 12px 0;
+  
+  padding-left: 20px;
+  padding-right:20px ;
 }
 .timer {
   font-size: 1.2rem;
@@ -43,6 +45,8 @@ ion-item {
   border: 1px solid #ccc;
   border-radius: 8px;
   text-align: center;
+   padding-left: 20px;
+  padding-right:20px ;
   
 }
 ion-item.selected {
@@ -52,7 +56,7 @@ ion-item.selected {
   
 }
 ion-progress-bar {
-  padding: 20px; 
+  
    height: 14px;
   border-radius: 10px;
   overflow: hidden;

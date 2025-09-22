@@ -1,21 +1,51 @@
-.progress-container {
-  padding: 20px;
-  text-align: center;
+.progress-page {
+  padding: 12px;
 
-  h2 {
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
+  .summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+
+    .summary-left {
+      h3 { margin: 0; color: #444; font-weight: 600; }
+      .points {
+        font-size: 28px;
+        font-weight: 800;
+        color: #00c9a7;
+        margin-top: 6px;
+      }
+      .small { font-size: 12px; color: #777; margin-top: 4px; }
+    }
+
+    .summary-right {
+      width: 48%;
+      ion-segment {
+        width: 100%;
+        --background: #f2f2f2;
+        ion-segment-button {
+          --background-activated: #00c9a7;
+          --color-activated: #fff;
+        }
+      }
+    }
   }
 
-  ion-item {
-    margin-bottom: 10px;
-    border-radius: 12px;
-    background: #f9f9f9;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
+  .charts {
+    .chart-container {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      margin-bottom: 18px;
+      text-align: center;
 
-  strong {
-    color: #00c9a7;
+      h4 {
+        margin: 0 0 8px 0;
+        font-size: 14px;
+        color: #333;
+      }
+    }
   }
 }
