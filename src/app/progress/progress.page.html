@@ -1,26 +1,55 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>My Progress</ion-title>
+  <ion-toolbar color="light">
+    <ion-title>Progress</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="progress-container">
-    <h2>Your Test Progress</h2>
+<ion-content class="progress-page">
+  <div class="summary">
+    <div class="summary-left">
+      <h3>Total Points</h3>
+      <div class="points">{{ totalPoints }}</div>
+      <div class="small">Last: {{ lastUpdated }}</div>
+    </div>
 
-    <ion-list *ngIf="progressData.length > 0; else noData">
-      <ion-item *ngFor="let item of progressData">
-        <ion-label>
-          <h3>Test on {{ item.date | date: 'short' }}</h3>
-          <p>Quiz Points: {{ item.quizPoints }} pts</p>
-          <p>Time Bonus: {{ item.timeBonus }} pts</p>
-          <strong>Total: {{ item.totalPoints }} pts</strong>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+    <div class="summary-right">
+      <ion-segment [(ngModel)]="segment" (ionChange)="setSegment(segment)">
+        <ion-segment-button value="daily">Daily</ion-segment-button>
+        <ion-segment-button value="weekly">Weekly</ion-segment-button>
+        <ion-segment-button value="subjects">Subjects</ion-segment-button>
+      </ion-segment>
+    </div>
+  </div>
 
-    <ng-template #noData>
-      <p>No progress yet. Take your first quiz!</p>
-    </ng-template>
+  <div class="charts">
+    <!-- DAILY (bar) -->
+    <div *ngIf="segment === 'daily'" class="chart-container">
+      <h4>Daily Progress</h4>
+      <canvas baseChart
+        [data]="dailyChartData"
+        [type]="'bar'"
+        [options]="dailyOptions">
+      </canvas>
+    </div>
+
+    <!-- WEEKLY (line/area) -->
+    <div *ngIf="segment === 'weekly'" class="chart-container">
+      <h4>Weekly Progress</h4>
+      <canvas baseChart
+        [data]="weeklyChartData"
+        [type]="'line'"
+        [options]="weeklyOptions">
+      </canvas>
+    </div>
+
+    <!-- SUBJECTS (pie) -->
+    <div *ngIf="segment === 'subjects'" class="chart-container">
+      <h4>Subjects</h4>
+      <canvas baseChart
+        [data]="subjectChartData"
+        [type]="'pie'"
+        [options]="subjectOptions">
+      </canvas>
+    </div>
   </div>
 </ion-content>
