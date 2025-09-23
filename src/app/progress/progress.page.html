@@ -1,19 +1,15 @@
 <ion-header>
   <ion-toolbar color="light">
-    <ion-title>Progress</ion-title>
+    <!-- Removed Progress title + date from top -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="progress-page">
   <div class="summary">
-    <div class="summary-left">
-      <h3>Total Points</h3>
-      <div class="points">{{ totalPoints }}</div>
-      <div class="small">Last: {{ lastUpdated }}</div>
-    </div>
+  
 
     <div class="summary-right">
-      <ion-segment [(ngModel)]="segment" (ionChange)="setSegment(segment)">
+      <ion-segment [(ngModel)]="segment" (ionChange)="setSegment(segment)" mode="md">
         <ion-segment-button value="daily">Daily</ion-segment-button>
         <ion-segment-button value="weekly">Weekly</ion-segment-button>
         <ion-segment-button value="subjects">Subjects</ion-segment-button>
@@ -22,7 +18,7 @@
   </div>
 
   <div class="charts">
-    <!-- DAILY (bar) -->
+    <!-- DAILY -->
     <div *ngIf="segment === 'daily'" class="chart-container">
       <h4>Daily Progress</h4>
       <canvas baseChart
@@ -32,7 +28,7 @@
       </canvas>
     </div>
 
-    <!-- WEEKLY (line/area) -->
+    <!-- WEEKLY -->
     <div *ngIf="segment === 'weekly'" class="chart-container">
       <h4>Weekly Progress</h4>
       <canvas baseChart
@@ -42,7 +38,7 @@
       </canvas>
     </div>
 
-    <!-- SUBJECTS (pie) -->
+    <!-- SUBJECTS -->
     <div *ngIf="segment === 'subjects'" class="chart-container">
       <h4>Subjects</h4>
       <canvas baseChart
@@ -51,5 +47,11 @@
         [options]="subjectOptions">
       </canvas>
     </div>
+  </div>
+
+  <!-- Bottom Info -->
+  <div class="bottom-bar">
+    <div class="bottom-left">Total: {{ totalPoints }}</div>
+    <div class="bottom-right">Date: {{ lastUpdated }}</div>
   </div>
 </ion-content>
