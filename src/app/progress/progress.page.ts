@@ -50,7 +50,7 @@ export class ProgressPage implements OnInit {
   weeklyChartData: any = { labels: this.weeklyLabels, datasets: this.weeklyDataSet };
   weeklyOptions: any = {
     responsive: true,
-    elements: { line: { tension: 0.4, fill: true } },
+    elements: { line: { tension: 0,  fill: true } },
     scales: { x: { grid: { display: false } }, y: { beginAtZero: true, ticks: { stepSize: 2 } } },
     plugins: { legend: { display: false } }
   };

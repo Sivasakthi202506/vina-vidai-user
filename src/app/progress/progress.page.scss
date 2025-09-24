@@ -1,56 +1,47 @@
 .progress-page {
-  padding-left:20px;
-  padding-right: 20px;
-  background: #e6f7ff; /* light blue */
+  --background: linear-gradient(180deg, #0f766e, #023030); 
 
   .summary {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap; /* fixes mobile overflow */
-
-    .summary-left {
-      h3 { margin: 0; color: #444; font-weight: 600; }
-      .points {
-        font-size: 28px;
-        font-weight: 800;
-        color: #00c9a7;
-      }
-    }
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 0 20px;
 
     .summary-right {
       width: 100%;
       display: flex;
-      justify-content: center; /* center align */
+      justify-content: center;
       ion-segment {
-        --background: #f2f2f2;
-        border-radius: 6px;
-        width: auto;
-        max-width: 90%; /* responsive */
+        --background: rgba(255,255,255,0.2); /* subtle transparency */
+        border-radius: 10px;
+        max-width: 90%;
         ion-segment-button {
-          --background-activated: #00c9a7;
-          --color-activated: #fff;
+          --background: transparent;
+          --color: #fff;
+          --color-checked: #fff;
+          --indicator-color: #00c9a7; /* brand accent */
+          font-weight: 600;
+          text-transform: uppercase;
         }
       }
     }
   }
 
   .charts {
+    padding: 0 20px;
     .chart-container {
       background: #fff;
-      border-radius: 10px;
-      padding-left: 20px;
-      padding-right: 20px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-      
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      margin-bottom: 18px;
       text-align: center;
 
-
       h4 {
-        
-        font-size: 14px;
-        color: #333;
+        margin: 0 0 12px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f766e; /* dark teal for headings */
       }
     }
   }
@@ -59,33 +50,23 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin-top: 10px;
-    color: #444;
-
-    .bottom-left { text-align: left; }
-    .bottom-right { text-align: right; }
+    margin: 12px 20px 0;
+    color: #fff; /* white text to contrast gradient */
+    font-weight: 500;
   }
 }
 
-
-/* Weekly graph customizations */
-:host ::ng-deep canvas {
-  /* make weekly chart line light sky blue */
-  .chartjs-render-monitor {
-    stroke: #87cefa !important; /* sky blue */
-  }
+/* Chart customizations */
+:host ::ng-deep .chartjs-render-monitor {
+  stroke: #00c9a7 !important; /* brand accent for line */
 }
-
-/* Remove sharp points on line chart */
 :host ::ng-deep .chartjs-render-monitor .point {
-  display: none !important;
+  display: none !important; /* remove round points */
 }
 
-
+/* Canvas responsive */
 canvas {
   width: 100% !important;
   height: auto !important;
   display: block;
 }
-
-
