@@ -11,15 +11,17 @@
       width: 100%;
       display: flex;
       justify-content: center;
+
       ion-segment {
-        --background: rgba(255,255,255,0.2); /* subtle transparency */
+        --background: rgba(255, 255, 255, 0.15); /* softer transparency */
         border-radius: 10px;
         max-width: 90%;
+
         ion-segment-button {
           --background: transparent;
-          --color: #fff;
-          --color-checked: #fff;
-          --indicator-color: #00c9a7; /* brand accent */
+          --color: #e0f7f5;        /* inactive tab text */
+          --color-checked: #ffffff; /* active tab text */
+          --indicator-color: #00c9a7; /* accent teal */
           font-weight: 600;
           text-transform: uppercase;
         }
@@ -29,19 +31,19 @@
 
   .charts {
     padding: 0 20px;
+
     .chart-container {
-      background: #fff;
+      background: #ffffff;
       border-radius: 14px;
       padding: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-      margin-bottom: 18px;
       text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
       h4 {
         margin: 0 0 12px;
         font-size: 15px;
         font-weight: 600;
-        color: #0f766e; /* dark teal for headings */
+        color: #023030; /* dark teal for headings */
       }
     }
   }
@@ -51,14 +53,14 @@
     justify-content: space-between;
     font-size: 14px;
     margin: 12px 20px 0;
-    color: #fff; /* white text to contrast gradient */
+    color: #cdeae7; /* light aqua for contrast */
     font-weight: 500;
   }
 }
 
 /* Chart customizations */
 :host ::ng-deep .chartjs-render-monitor {
-  stroke: #00c9a7 !important; /* brand accent for line */
+  stroke: #00c9a7 !important; /* accent teal for line */
 }
 :host ::ng-deep .chartjs-render-monitor .point {
   display: none !important; /* remove round points */
@@ -69,4 +71,13 @@ canvas {
   width: 100% !important;
   height: auto !important;
   display: block;
+}
+
+/* Override segment style globally */
+.segment-button {
+  --color: #e0f7f5;        /* inactive */
+  --color-checked: #ffffff; /* active */
+  --indicator-color: #00c9a7;
+  --background: transparent;
+  font-weight: bold;
 }
