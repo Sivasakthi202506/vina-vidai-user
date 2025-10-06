@@ -31,6 +31,7 @@
 
   .charts {
     padding: 0 20px;
+     height: 100%; 
 
     .chart-container {
       background: #ffffff;
@@ -38,6 +39,10 @@
       padding: 16px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      
+  /* make inner container stretch */
+
+    
 
       h4 {
         margin: 0 0 12px;
@@ -52,7 +57,10 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin: 12px 20px 0;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
     color: #cdeae7; /* light aqua for contrast */
     font-weight: 500;
   }
