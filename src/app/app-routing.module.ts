@@ -24,6 +24,11 @@ const routes: Routes = [
     loadComponent: () => import('./welcome/welcome.page').then( m => m.WelcomePage)
   },
   
+  {
+    path: 'progress',
+    loadComponent: () => import('./progress/progress.page').then( m => m.ProgressPage)
+  },
+  
  
   {
     path: 'tabs',
@@ -41,6 +46,10 @@ const routes: Routes = [
     path: 'test',
     loadComponent: () => import('./test/test.page').then( m => m.TestPage)
   },
+     {
+    path: 'progress',
+    loadComponent: () => import('./progress/progress.page').then( m => m.ProgressPage)
+  },
   
      
       {
@@ -50,6 +59,7 @@ const routes: Routes = [
       }
     ]
   }
+
 
   
 

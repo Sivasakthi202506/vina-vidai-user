@@ -1,0 +1,83 @@
+.progress-page {
+  --background: linear-gradient(180deg, #0f766e, #023030); 
+
+  .summary {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 0 20px;
+
+    .summary-right {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      ion-segment {
+        --background: rgba(255, 255, 255, 0.15); /* softer transparency */
+        border-radius: 10px;
+        max-width: 90%;
+
+        ion-segment-button {
+          --background: transparent;
+          --color: #e0f7f5;        /* inactive tab text */
+          --color-checked: #ffffff; /* active tab text */
+          --indicator-color: #00c9a7; /* accent teal */
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .charts {
+    padding: 0 20px;
+
+    .chart-container {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+      h4 {
+        margin: 0 0 12px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #023030; /* dark teal for headings */
+      }
+    }
+  }
+
+  .bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 12px 20px 0;
+    color: #cdeae7; /* light aqua for contrast */
+    font-weight: 500;
+  }
+}
+
+/* Chart customizations */
+:host ::ng-deep .chartjs-render-monitor {
+  stroke: #00c9a7 !important; /* accent teal for line */
+}
+:host ::ng-deep .chartjs-render-monitor .point {
+  display: none !important; /* remove round points */
+}
+
+/* Canvas responsive */
+canvas {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* Override segment style globally */
+.segment-button {
+  --color: #e0f7f5;        /* inactive */
+  --color-checked: #ffffff; /* active */
+  --indicator-color: #00c9a7;
+  --background: transparent;
+  font-weight: bold;
+}

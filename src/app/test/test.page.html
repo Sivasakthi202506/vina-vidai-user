@@ -1,34 +1,47 @@
-<ion-header>
+<ion-header class="quiz-header">
   <ion-toolbar>
-    <ion-title>Test</ion-title>
+    <ion-title>Science Test</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- Timer -->
-  <div class="timer" *ngIf="!showResult && !reviewMode">⏳ {{ formatTime(timer) }}</div>
+  <!-- Timer + Progress Bar -->
+  <div class="top-bar" *ngIf="!showResult && !reviewMode">
+    <div class="timer">⏳ {{ formatTime(timer) }}</div>
+    <ion-progress-bar
+      [value]="(currentQuestionIndex + 1) / questions.length"
+      color="primary"
+    ></ion-progress-bar>
+    <div class="progress-text">
+  Question {{ currentQuestionIndex + 1 }} / {{ questions.length }}
+</div>
 
-  <!-- Progress -->
-  <div class="progress-text" *ngIf="!showResult && !reviewMode">
-    Question {{ progress }}
   </div>
 
   <!-- Quiz Section -->
-  <div class="question-container" *ngIf="questions.length > 0 && !showResult && !reviewMode">
+  <div
+    class="question-container"
+    *ngIf="questions.length > 0 && !showResult && !reviewMode"
+  >
     <h2>{{ questions[currentQuestionIndex]?.question }}</h2>
 
-    <ion-item
-      button
-      *ngFor="let option of questions[currentQuestionIndex]?.options"
-      (click)="selectOption(option)"
-      [class.selected]="option === selectedOption"
-    >
-      {{ option }}
-    </ion-item>
+    <ion-list>
+      <ion-item
+        button
+        *ngFor="let option of questions[currentQuestionIndex]?.options"
+        (click)="selectOption(option)"
+        [class.selected]="option === selectedOption"
+      >
+        <ion-label>{{ option }}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 
   <!-- Buttons Row -->
-  <div class="button-row" *ngIf="questions.length > 0 && !showResult && !reviewMode">
+  <div
+    class="button-row"
+    *ngIf="questions.length > 0 && !showResult && !reviewMode"
+  >
     <ion-button
       class="prev-btn styled-btn"
       (click)="prevQuestion()"
@@ -59,17 +72,41 @@
   </div>
 
   <!-- ✅ Result Popup -->
-  <div *ngIf="showResult" class="result-popup">
-    <div class="popup-card" [ngClass]="resultColor">
-      <p class="message">
-        You got {{ correctCount }} / {{ questions.length }} correct.<br />
-        Time taken: {{ formatTime(duration * 60 - timer) }}
-      </p>
-      <ion-button expand="block" [color]="resultColor" (click)="goToReview()">
-        OK
-      </ion-button>
+  <!-- ✅ Result Card -->
+<div *ngIf="showResult" class="result-popup">
+  <div class="popup-card result-card">
+    <!-- Stars -->
+    <div class="stars">
+      <ion-icon name="star" class="star red"></ion-icon>
+      <ion-icon name="star" class="star yellow"></ion-icon>
+      <ion-icon name="star" class="star green"></ion-icon>
     </div>
+
+    <!-- Effort Message -->
+    <h2 class="effort-text">GREAT EFFORT!</h2>
+
+    <!-- Score Table -->
+    <div class="score-table">
+      <div class="row">
+        <span>Quiz Points</span>
+        <span>{{ correctCount }} x 10 = {{ correctCount * 10 }} pts</span>
+      </div>
+      <div class="row">
+        <span>Time Bonus</span>
+        <span>{{ timeBonus }} pts</span>
+      </div>
+      <div class="row total">
+        <span>Total Points</span>
+        <span>{{ totalPoints }} pts</span>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <ion-button expand="block" class="got-it-btn" (click)="goToReview()">
+      GOT IT
+    </ion-button>
   </div>
+</div>
 
   <!-- ✅ Review Mode -->
   <div *ngIf="reviewMode" class="review-container">

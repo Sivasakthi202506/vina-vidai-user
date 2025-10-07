@@ -4,6 +4,7 @@ import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-test',
   standalone: true,
@@ -31,18 +32,23 @@ export class TestPage implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private firestore: Firestore,
-    private router: Router
+    private router: Router,
+    
   ) {}
 
   async ngOnInit() {
-    const numQuestions =
-      Number(this.route.snapshot.queryParamMap.get('numQuestions')) || 5;
-    this.duration =
-      Number(this.route.snapshot.queryParamMap.get('duration')) || 10;
+  // ✅ Read params exactly as sent
+  const numQuestions =
+    Number(this.route.snapshot.queryParamMap.get('questions')) || 5;
+  this.duration =
+    Number(this.route.snapshot.queryParamMap.get('time')) || 600; // seconds
 
-    this.timer = this.duration * 60;
-    await this.loadQuestions(numQuestions);
-  }
+  // ✅ Timer directly uses user-given seconds
+  this.timer = this.duration;
+
+  await this.loadQuestions(numQuestions);
+}
+
 
   ngOnDestroy() {
     this.stopTimer();
@@ -126,25 +132,7 @@ export class TestPage implements OnInit, OnDestroy {
     }
   }
 
-  submitQuiz() {
-    this.correctCount = 0;
-    this.questions.forEach((q) => {
-      if (this.userAnswers[q.id] === q.answer) {
-        this.correctCount++;
-      }
-    });
-
-    if (this.correctCount >= 4) {
-      this.resultColor = 'success';
-    } else if (this.correctCount === 3) {
-      this.resultColor = 'warning';
-    } else {
-      this.resultColor = 'danger';
-    }
-
-    this.showResult = true;
-    this.stopTimer();
-  }
+ 
 
   get progress() {
     return `${this.currentQuestionIndex + 1}/${this.questions.length}`;
@@ -154,4 +142,29 @@ export class TestPage implements OnInit, OnDestroy {
     this.showResult = false;
     this.reviewMode = true;
   }
+  timeBonus: number = 0;
+totalPoints: number = 0;
+  submitQuiz() {
+  this.correctCount = 0;
+
+  // ✅ Count correct answers
+  this.questions.forEach((q) => {
+    if (this.userAnswers[q.id] === q.answer) {
+      this.correctCount++;
+    }
+  });
+
+  // ✅ Time bonus (1 point for every 30 seconds left, adjust as you like)
+  this.timeBonus = Math.floor(this.timer / 30);
+
+  // ✅ Total points
+  this.totalPoints = this.correctCount * 10 + this.timeBonus;
+
+  // ✅ Show result card
+  this.showResult = true;
+
+  // ✅ Stop timer
+  this.stopTimer();
+}
+
 }
