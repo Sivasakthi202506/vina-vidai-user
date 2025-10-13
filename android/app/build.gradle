@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     namespace "com.example.quizapp"
-    compileSdk rootProject.ext.compileSdkVersion
+    compileSdkVersion 35
     defaultConfig {
         applicationId "com.example.quizapp"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+         minSdkVersion 23      // Android 5.0 - works on almost every phone
+        targetSdkVersion 35   // Android 14 - meets Google Play rules
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
