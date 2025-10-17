@@ -6,11 +6,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ionic build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
-  },
+    "lint": "ng lint",
+    "deploy": "npm run build && npx gh-pages -d www"
+ },
   "private": true,
   "dependencies": {
     "@angular/animations": "^20.0.0",
